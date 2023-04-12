@@ -61,21 +61,44 @@ function uppercaser(str) {
     });
 }
 
+async function spacer(str) {
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      if (typeof str === 'string') {
+        let newStr = '';
+        for(let i = 0; i < str.length - 1; i++){
+          newStr += str[i] + ' '
+        }
+        newStr += str[str.length - 1];
+        resolve(newStr);
+      } else {
+        reject('Argument to uppercase must be a string');
+      }
+    }, 100);
+  })
+}
+
 async function greetAndUppercase(name) {
     greeting = await greet(name)
     uppercasedGreeting = await uppercaser(greeting)
+    uppercasedGreeting = await spacer(uppercasedGreeting)
     return uppercasedGreeting
 }
 
 /* Uncomment me! #1 */
-// result = greetAndUppercase('Ducky')
-// console.log(result)
+//  result = greetAndUppercase('Ducky')
+//  console.log(result)
+
+// 1. an async function waits for something to happen and then executes. 
+// The return type is a string only if greet and uppercase finish. otherwise its a promise
+// 2. it prints the Promise and it's status
+// 3. the expected output is produced
 
 /* Uncomment me! #2 */
-// greetAndUppercase('Ducky')
-//     .then(function(result) {
-//         console.log(result)
-//     })
-//     .catch(function(err) {
-//         console.log(err)
-//     })
+greetAndUppercase('Ducky')
+    .then(function(result) {
+        console.log(result)
+    })
+    .catch(function(err) {
+        console.log(err)
+    })
