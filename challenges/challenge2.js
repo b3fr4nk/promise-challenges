@@ -63,17 +63,43 @@ function uppercaser(str) {
     });
 }
 
-name = 'Ducky'
-my_str = 'Make School is Awesome!!!'
+function spacer(str) {
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      if (typeof str === 'string') {
+        let newStr = '';
+        for(let i = 0; i < str.length - 1; i++){
+          newStr += str[i] + ' '
+        }
+        newStr += str[str.length - 1];
+        resolve(newStr);
+      } else {
+        reject('Argument to uppercase must be a string');
+      }
+    }, 100);
+  })
+}
+
+name = 'ducky';
+my_str = 'wassup';
+let foo = 'foo'
 
 greet(name)
     .then((greetResult) => {
-        console.log(greetResult)
+        console.log(greetResult);
         return uppercaser(my_str);
     })
     .then((uppercaserResult) => {
-        console.log(uppercaserResult)
+        console.log(uppercaserResult);
+        return spacer('hello');
+    })
+    .then((spacerResult) => {
+      console.log(spacerResult);
     }).catch((err) => {
-        console.log('Received an error!')
+        console.log('Received an error!');
         console.log(err);
     });
+
+    // 1. will print the greeting and then the string with all caps
+    // 2. just prints received an error must be a string
+    // 3. prints the greeting and then prints received an error argument must be a string
