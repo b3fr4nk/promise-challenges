@@ -22,7 +22,7 @@
 function snooze(action) {
     setTimeout(function() {
       action();
-    }, 2000);
+    }, 0);
 }
 console.log('Step 1');
 
@@ -32,4 +32,7 @@ snooze( function() {
 } );
 
 console.log('Step 3');
+
+// 1. output would be Step 1 Step 3 Step 2
+// 3. I think output after changing delay would be Step 1 Step 2 Step 3. It was not probably because step 2 is still async and it will still only complete after step 3
 
